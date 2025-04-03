@@ -4,11 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.blackcoffeecoding.models.entities.Lesson;
+import org.blackcoffeecoding.utils.validation.UniqueDisciplineCode;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class AddDisciplineDto {
+    @UniqueDisciplineCode
     private Integer code;
     private String name;
     private String department;

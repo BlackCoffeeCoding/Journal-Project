@@ -3,8 +3,10 @@ package org.blackcoffeecoding.dto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.blackcoffeecoding.utils.validation.UniqueStudentGbNumber;
 
 public class AddStudentDto {
+    @UniqueStudentGbNumber
     private Integer gbNumber;
     private String fullName;
     private String studentGroup;

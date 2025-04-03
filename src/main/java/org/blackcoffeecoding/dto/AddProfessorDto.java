@@ -8,11 +8,13 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.blackcoffeecoding.models.entities.Lesson;
+import org.blackcoffeecoding.utils.validation.UniqueProfessorPersonnelNumber;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class AddProfessorDto {
+    @UniqueProfessorPersonnelNumber
     private Integer personnelNumber;
     private String fullName;
     private String birthDate;
