@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Добавление пары</h1>
+                </div>
+                <form th:action="@{/lessons/add}"
+                      th:method="post"
+                      th:object="${lessonModel}"
+                      class="m-md-auto w-50 pb-3">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="date">Дата занятия</label>
+                        <input th:field="*{date}"
+                               th:errorclass="is-invalid"
+                               type="date" class="form-control text-center" id="date" aria-describedby="date"
+                               name="date"/>
+                        <small th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="time">Время начала и конца занятия (через -)</label>
+                        <input th:field="*{time}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center" id="time" aria-describedby="time"
+                               name="time"/>
+                        <small th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="number">Номер пары</label>
+                        <input th:field="*{number}"
+                               th:errorclass="is-invalid"
+                               type="number" min ="1" max="8" class="form-control text-center" id="number" aria-describedby="number"
+                               name="number"/>
+                        <small th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="classroom">Аудитория</label>
+                        <input th:field="*{classroom}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center" id="classroom" aria-describedby="classroom"
+                               name="classroom"/>
+                        <small th:if="${#fields.hasErrors('classroom')}" th:errors="*{classroom}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="time">Группа</label>
+                        <input th:field="*{studentGroup}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center" id="studentGroup" aria-describedby="studentGroup"
+                               name="studentGroup"/>
+                        <small th:if="${#fields.hasErrors('studentGroup')}" th:errors="*{studentGroup}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="disciplineCode">Дисциплина</label>
+                        <select  class="form-control text-center"
+                                id="disciplineCode" name="disciplineCode" th:field="*{disciplineCode}">
+                            <option th:each="ad : ${availableDisciplines}"
+                                    th:value="${ad.code}"
+                                    th:text="${ad.name}+' '+${ad.department}">Название дисциплины и читающая кафедра
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('disciplineCode')}" th:errors="*{disciplineCode}"
+                               class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="professorPersonnelNumber">Преподаватель</label>
+                        <select  class="form-control text-center"
+                                 id="professorPersonnelNumber" name="professorPersonnelNumber" th:field="*{professorPersonnelNumber}">
+                            <option th:each="pr : ${availableProfessors}"
+                                    th:value="${pr.personnelNumber}"
+                                    th:text="${pr.fullName} + ' ' + ${pr.department} + ' ' + ${pr.disciplines}">ФИО профессора, его кафедра и читаемые им дисциплины
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('professorPersonnelNumber')}" th:errors="*{professorPersonnelNumber}"
+                               class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Добавить пару</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer"/>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

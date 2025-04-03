@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Добавление преподавателя</h1>
+                </div>
+                <form th:action="@{/disciplines/add}"
+                      th:method="post"
+                      th:object="${disciplineModel}"
+                      class="m-md-auto w-50 pb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="code">Код дисциплины</label>
+                        <input th:field="*{code}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center" id="code" aria-describedby="code"
+                               name="code"/>
+                        <small th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Название дисциплины</label>
+                        <input th:field="*{name}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center" id="name" aria-describedby="name"
+                               name="name"/>
+                        <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="department">Читающая кафедра</label>
+                        <input th:field="*{department}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center" id="department" aria-describedby="department"
+                               name="department"/>
+                        <small th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Добавить дисциплину</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer"/>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

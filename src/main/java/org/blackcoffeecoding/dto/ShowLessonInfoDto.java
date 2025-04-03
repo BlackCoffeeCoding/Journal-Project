@@ -1,16 +1,21 @@
 package org.blackcoffeecoding.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-
 public class ShowLessonInfoDto {
+    private String id;
     private String date;
     private String time;
     private Integer number;
     private String classroom;
     private String studentGroup;
-    private Integer disciplineCode;
-    private Integer professorPersonnelNumber;
+    private Integer disciplineName;
+    private Integer professorFullName;
+
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getDate() {
         return date;
@@ -47,17 +52,17 @@ public class ShowLessonInfoDto {
         this.studentGroup = studentGroup;
     }
 
-    public Integer getDisciplineCode() {
-        return disciplineCode;
+    public Integer getDisciplineName() {
+        return disciplineName;
     }
-    public void setDisciplineCode(Integer disciplineCode) {
-        this.disciplineCode = disciplineCode;
+    public void setDisciplineName(Integer disciplineName) {
+        this.disciplineName = disciplineName;
     }
 
-    public Integer getProfessorPersonnelNumber() {
-        return professorPersonnelNumber;
+    public Integer getProfessorFullName() {
+        return professorFullName;
     }
-    public void setProfessorPersonnelNumber(Integer professorPersonnelNumber) {
-        this.professorPersonnelNumber = professorPersonnelNumber;
+    public void setProfessorFullName(Integer professorFullName) {
+        this.professorFullName = professorFullName;
     }
 }
