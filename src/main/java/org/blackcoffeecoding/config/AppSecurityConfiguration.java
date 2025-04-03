@@ -35,10 +35,10 @@ public class AppSecurityConfiguration {
                                         requestMatchers("/static/**", "/css/**", "/js/**", "/pic/**", "/webjars/**").permitAll().
                                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                                         requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll().
-                                        requestMatchers("/specialities/all", "/specialities/speciality-contest/{speciality-code}").permitAll().
+                                        requestMatchers("/lessons/all", "/professors/all", "/disciplines/all", "/students/all").permitAll().
                                         requestMatchers("/users/profile").authenticated().
-                                        requestMatchers("/applicants/add", "/applicants/all", "/applicants/applicant-delete/", "/exams/add", "/exams/exam-delete/", "/exams/all", "/exams/exam-members/").hasAnyRole(UserRoles.MODERATOR.name(), UserRoles.ADMIN.name()).
-                                        requestMatchers("/specialities/add", "/specialities/speciality-delete/").hasRole(UserRoles.ADMIN.name()).
+                                        requestMatchers("/lessons/add","/lessons/lesson-delete/").hasAnyRole(UserRoles.MODERATOR.name(), UserRoles.ADMIN.name()).
+                                        requestMatchers("/professors/add", "/professors/professor-delete/", "/disciplines/add","/disciplines/discipline-delete/", "/students/add", "/students/student-delete/").hasRole(UserRoles.ADMIN.name()).
                                         anyRequest().authenticated()
                 )
                 .formLogin(

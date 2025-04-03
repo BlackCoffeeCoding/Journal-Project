@@ -28,8 +28,8 @@ public class LessonServiceImpl implements LessonService {
 
     public void addLesson(AddLessonDto addLessonDto) {
         Lesson lesson = mapper.map(addLessonDto, Lesson.class);
-        lesson.setProfessor(professorRepository.findByPersonnelNumber(addLessonDto.getProfessorPersonnelNumber()).orElse(null));
         lesson.setDiscipline(disciplineRepository.findByCode(addLessonDto.getDisciplineCode()).orElse(null));
+        lesson.setProfessor(professorRepository.findByPersonnelNumber(addLessonDto.getProfessorPersonnelNumber()).orElse(null));
         lessonRepository.saveAndFlush(lesson);
     }
 
