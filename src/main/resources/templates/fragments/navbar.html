@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Проект "Журнал"</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link text-light" href="/">Домой</a>-->
+                <!--                </li>-->
+                <!-- Dropdown for adding data -->
+                <li class="nav-item dropdown" sec:authorize="hasAnyRole('ADMIN','MODERATOR')">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="addDataDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Добавление данных
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" href="/professors/add">Добавить преподавателя</a></li>
+                        <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" href="/disciplines/add">Добавить дисциплину</a></li>
+                        <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" href="/students/add">Добавить студента</a></li>
+                        <li><a class="dropdown-item" href="/lessons/add">Добавить пару</a></li>
+                    </ul>
+                </li>
+                <!-- Dropdown for viewing data -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="viewDataDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Просмотр данных
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/professors/all">Преподаватели</a></li>
+                        <li><a class="dropdown-item" href="/disciplines/all">Читаемые дисциплины</a></li>
+                        <li><a class="dropdown-item" href="/students/all">Список студентов</a></li>
+                        <li><a class="dropdown-item" href="/lessons/all">Список пар</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item d-flex align-items-center">
+                    <img src="/pic/CoffeeOwl.png" alt="Admin Role" class="rounded-circle me-2" style="width: 30px; height: 30px;"
+                         sec:authorize="hasRole('ADMIN')" />
+                    <img src="/pic/cat.png" alt="Moderator Role" class="rounded-circle me-2" style="width: 30px; height: 30px;"
+                         sec:authorize="hasRole('MODERATOR')" />
+                    <img src="/pic/raccoon.png" alt="User Role" class="rounded-circle me-2" style="width: 30px; height: 30px;"
+                         sec:authorize="hasRole('USER')" />
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="nav-link text-info" href="/users/profile"><th:block sec:authentication="name"></th:block></a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <form th:method="post" th:action="@{/users/logout}">
+                        <input class="btn btn-link nav-link text-light" type="submit" value="Выйти">
+                    </form>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link text-light" th:href="@{/users/register}">Регистрация</a>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link text-light" th:href="@{/users/login}">Авторизация</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

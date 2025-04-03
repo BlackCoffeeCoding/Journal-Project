@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar"></div>
+<main class="flex-shrink-0">
+  <div class="container my-5">
+    <h1 class="text-center text-dark mb-4">Профиль</h1>
+    <div class="row bg-light rounded shadow-sm p-4 align-items-center">
+      <div class="col-md-6" th:object="${user}">
+        <h2 class="text-primary mb-3">Информация о пользователе</h2>
+        <p class="fs-5"><strong>Полное имя:</strong> <span th:text="*{fullName}"></span></p>
+        <p class="fs-5"><strong>Имя пользователя:</strong> <span th:text="*{username}"></span></p>
+        <p class="fs-5"><strong>Возраст:</strong> <span th:text="*{age}"></span></p>
+        <p class="fs-5"><strong>Роль:</strong> <span sec:authentication="principal.authorities"></span></p>
+      </div>
+      <div class="col-md-6 text-center">
+        <img sec:authorize="hasRole('ADMIN')" src="/pic/CoffeeOwl.png" class="img-fluid rounded" alt="Администратор" style="max-height: 350px;">
+        <img sec:authorize="hasRole('MODERATOR')" src="/pic/cat.png" class="img-fluid rounded" alt="Модератор" style="max-height: 350px;">
+        <img sec:authorize="hasRole('USER')" src="/pic/raccoon.png" class="img-fluid rounded" alt="Пользователь" style="max-height: 350px;">
+      </div>
+    </div>
+  </div>
+</main>
+<footer th:replace="fragments/footer"></footer>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
