@@ -32,7 +32,10 @@ public class RedisConfig {
 
         return RedisCacheManager.builder(redisConnectionFactory())
                 .cacheDefaults(cacheConfig)
-                .withCacheConfiguration("specialities", myDefaultCacheConfig(Duration.ofMinutes(10)))
+                .withCacheConfiguration("disciplines", myDefaultCacheConfig(Duration.ofMinutes(10)))
+                .withCacheConfiguration("professors", myDefaultCacheConfig(Duration.ofMinutes(10)))
+                .withCacheConfiguration("students", myDefaultCacheConfig(Duration.ofMinutes(10)))
+                .withCacheConfiguration("lessons", myDefaultCacheConfig(Duration.ofMinutes(10)))
                 .build();
     }
 

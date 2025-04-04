@@ -31,8 +31,8 @@ public class AppSecurityConfiguration {
                 .authorizeHttpRequests(
                         authorizeHttpRequests ->
                                 authorizeHttpRequests.
-                                        requestMatchers("/actuator/prometheus", "/actuator/**").permitAll().
                                         requestMatchers("/static/**", "/css/**", "/js/**", "/pic/**", "/webjars/**").permitAll().
+                                        requestMatchers("/actuator/prometheus", "/actuator/**").permitAll().
                                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                                         requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll().
                                         requestMatchers("/lessons/all", "/professors/all", "/disciplines/all", "/students/all").permitAll().

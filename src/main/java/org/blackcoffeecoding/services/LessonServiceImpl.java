@@ -7,12 +7,16 @@ import org.blackcoffeecoding.repositories.DisciplineRepository;
 import org.blackcoffeecoding.repositories.LessonRepository;
 import org.blackcoffeecoding.repositories.ProfessorRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class LessonServiceImpl implements LessonService {
     private final LessonRepository lessonRepository;
     private final ProfessorRepository professorRepository;
@@ -26,6 +30,7 @@ public class LessonServiceImpl implements LessonService {
         this.mapper = mapper;
     }
 
+    @CacheEvict(cacheNames = "lessons", allEntries = true)
     public void addLesson(AddLessonDto addLessonDto) {
         Lesson lesson = mapper.map(addLessonDto, Lesson.class);
         lesson.setDiscipline(disciplineRepository.findByCode(addLessonDto.getDisciplineCode()).orElse(null));
@@ -33,11 +38,13 @@ public class LessonServiceImpl implements LessonService {
         lessonRepository.saveAndFlush(lesson);
     }
 
+    @Cacheable("lessons")
     public List<ShowLessonInfoDto> allLessons() {
         return lessonRepository.findAll().stream().map(lesson -> mapper.map(lesson, ShowLessonInfoDto.class))
                 .collect(Collectors.toList());
     }
 
+    @CacheEvict(cacheNames = "lessons", allEntries = true)
     public void removeLesson(String id) {
         lessonRepository.deleteById(id);
     }

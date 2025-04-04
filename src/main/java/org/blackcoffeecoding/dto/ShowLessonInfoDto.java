@@ -7,8 +7,8 @@ public class ShowLessonInfoDto {
     private Integer number;
     private String classroom;
     private String studentGroup;
-    private Integer disciplineName;
-    private Integer professorFullName;
+    private String disciplineName;
+    private String professorFullName;
 
     public String getId() {
         return id;
@@ -52,17 +52,17 @@ public class ShowLessonInfoDto {
         this.studentGroup = studentGroup;
     }
 
-    public Integer getDisciplineName() {
+    public String getDisciplineName() {
         return disciplineName;
     }
-    public void setDisciplineName(Integer disciplineName) {
+    public void setDisciplineName(String disciplineName) {
         this.disciplineName = disciplineName;
     }
 
-    public Integer getProfessorFullName() {
+    public String getProfessorFullName() {
         return professorFullName;
     }
-    public void setProfessorFullName(Integer professorFullName) {
+    public void setProfessorFullName(String professorFullName) {
         this.professorFullName = professorFullName;
     }
 }
