@@ -5,19 +5,19 @@
 <div th:replace="fragments/navbar"></div>
 <main class="flex-shrink-0">
     <div class="container my-5">
-        <h2 class="text-center text-dark">Просмотр преподавателей</h2>
+        <h2 class="text-center text-dark mb-4">Просмотр преподавателей</h2>
         <div class="row">
             <div th:each="p : ${professorInfos}" class="col-md-4">
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-sm mb-4" style="border: 1px solid #ddd; border-radius: 10px;">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="'ФИО: ' + *{p.fullName}"></h5>
-                        <p class="card-text" th:text="'Табельный номер: ' + *{p.personnelNumber}"></p>
-                        <p class="card-text" th:text="'Дата рождения: ' + *{p.birthDate}"></p>
-                        <p class="card-text" th:text="'Стаж: ' + *{p.experience}"></p>
-                        <p class="card-text" th:text="'Кафедра: ' + *{p.department}"></p>
-                        <p class="card-text" th:text="'Должность: ' + *{p.jobTitle}"></p>
-                        <p class="card-text" th:text="'Преподаваемые дисциплины: ' + *{p.disciplines}"></p>
-                        <div class="d-flex justify-content-between">
+                        <h5 class="card-title" th:text="'👨‍🏫 ФИО: ' + *{p.fullName}" style="font-size: 1.25rem; font-weight: bold;"></h5>
+                        <p class="card-text" th:text="'🆔 Табельный номер: ' + *{p.personnelNumber}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'🎂 Дата рождения: ' + *{p.birthDate}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'🕰️ Стаж: ' + *{p.experience}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'🏫 Кафедра: ' + *{p.department}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'💼 Должность: ' + *{p.jobTitle}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'📚 Преподаваемые дисциплины: ' + *{p.disciplines}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <div class="d-flex justify-content-between mt-3">
                             <a class="btn btn-danger btn-sm"
                                th:href="@{/professors/professor-delete/{professor-personnel-number}(professor-personnel-number=${p.personnelNumber})}"
                                sec:authorize="hasAnyRole('ADMIN')">

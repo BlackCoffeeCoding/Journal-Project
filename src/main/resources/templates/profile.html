@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head"/>
 <body class="d-flex flex-column h-100">
 <div th:replace="fragments/navbar"></div>
@@ -12,12 +12,15 @@
         <p class="fs-5"><strong>Полное имя:</strong> <span th:text="*{fullName}"></span></p>
         <p class="fs-5"><strong>Имя пользователя:</strong> <span th:text="*{username}"></span></p>
         <p class="fs-5"><strong>Возраст:</strong> <span th:text="*{age}"></span></p>
-        <p class="fs-5"><strong>Роль:</strong> <span sec:authentication="principal.authorities"></span></p>
+        <!-- Роль -->
+        <p class="fs-5"><strong>Роль:</strong>
+          <span th:each="role : ${#authentication.authorities}" th:text="${role.authority == 'ROLE_ADMIN' ? 'Администратор' : (role.authority == 'ROLE_MODERATOR' ? 'Модератор' : 'Пользователь') }"></span>
+        </p>
       </div>
       <div class="col-md-6 text-center">
-        <img sec:authorize="hasRole('ADMIN')" src="/pic/CoffeeOwl.png" class="img-fluid rounded" alt="Администратор" style="max-height: 350px;">
-        <img sec:authorize="hasRole('MODERATOR')" src="/pic/cat.png" class="img-fluid rounded" alt="Модератор" style="max-height: 350px;">
-        <img sec:authorize="hasRole('USER')" src="/pic/raccoon.png" class="img-fluid rounded" alt="Пользователь" style="max-height: 350px;">
+        <img sec:authorize="hasRole('ADMIN')" src="/pic/CoffeeOwl.png" class="img-fluid rounded profile-img" alt="Администратор" style="max-height: 350px; transition: transform 0.3s ease-in-out;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)';">
+        <img sec:authorize="hasRole('MODERATOR')" src="/pic/cat.png" class="img-fluid rounded profile-img" alt="Модератор" style="max-height: 350px; transition: transform 0.3s ease-in-out;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)';">
+        <img sec:authorize="hasRole('USER')" src="/pic/raccoon.png" class="img-fluid rounded profile-img" alt="Пользователь" style="max-height: 350px; transition: transform 0.3s ease-in-out;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)';">
       </div>
     </div>
   </div>

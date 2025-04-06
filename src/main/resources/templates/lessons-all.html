@@ -5,19 +5,19 @@
 <div th:replace="fragments/navbar"></div>
 <main class="flex-shrink-0">
     <div class="container my-5">
-        <h2 class="text-center text-dark">Просмотр списка пар</h2>
+        <h2 class="text-center text-dark mb-4">Просмотр списка пар</h2>
         <div class="row">
             <div th:each="l : ${lessonInfos}" class="col-md-4">
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-sm mb-4" style="border: 1px solid #ddd; border-radius: 10px;">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="'Дисциплина: ' + *{l.disciplineName}"></h5>
-                        <p class="card-text" th:text="'Преподаватель: ' + *{l.professorFullName}"></p>
-                        <p class="card-text" th:text="'Номер пары: ' + *{l.number}"></p>
-                        <p class="card-text" th:text="'Дата: ' + *{l.date}"></p>
-                        <p class="card-text" th:text="'Время: ' + *{l.time}"></p>
-                        <p class="card-text" th:text="'Аудитория: ' + *{l.classroom}"></p>
-                        <p class="card-text" th:text="'Группа: ' + *{l.studentGroup}"></p>
-                        <div class="d-flex justify-content-between">
+                        <h5 class="card-title" th:text="'📖 Дисциплина: ' + *{l.disciplineName}" style="font-size: 1.25rem; font-weight: bold;"></h5>
+                        <p class="card-text" th:text="'👨‍🏫 Преподаватель: ' + *{l.professorFullName}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'🔢 Номер пары: ' + *{l.number}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'📅 Дата: ' + *{l.date}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'⏰ Время: ' + *{l.time}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'🏫 Аудитория: ' + *{l.classroom}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'👥 Группа: ' + *{l.studentGroup}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <div class="d-flex justify-content-between mt-3">
                             <a class="btn btn-danger btn-sm"
                                th:href="@{/lessons/lesson-delete/{lesson-id}(lesson-id=${l.id})}"
                                sec:authorize="hasAnyRole('ADMIN')">

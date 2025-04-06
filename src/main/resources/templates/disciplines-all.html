@@ -5,14 +5,14 @@
 <div th:replace="fragments/navbar"></div>
 <main class="flex-shrink-0">
     <div class="container my-5">
-        <h2 class="text-center text-dark">Просмотр дисциплин</h2>
+        <h2 class="text-center text-dark mb-4">Просмотр дисциплин</h2>
         <div class="row">
             <div th:each="d : ${disciplineInfos}" class="col-md-4">
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-sm mb-4" style="border: 1px solid #ddd; border-radius: 10px;">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="'Название дисциплины: ' + *{d.name}"></h5>
-                        <p class="card-text" th:text="'Код дисциплины: ' + *{d.code}"></p>
-                        <p class="card-text" th:text="'Читающая  кафедра: ' + *{d.department}"></p>
+                        <h5 class="card-title" th:text="'📚 Название дисциплины: ' + *{d.name}" style="font-size: 1.25rem; font-weight: bold;"></h5>
+                        <p class="card-text" th:text="'🔑 Код дисциплины: ' + *{d.code}" style="font-size: 1rem; color: #6c757d;"></p>
+                        <p class="card-text" th:text="'🏫 Читающая кафедра: ' + *{d.department}" style="font-size: 1rem; color: #6c757d;"></p>
                         <div class="d-flex justify-content-between">
                             <a class="btn btn-danger btn-sm"
                                th:href="@{/disciplines/discipline-delete/{discipline-code}(discipline-code=${d.code})}"
