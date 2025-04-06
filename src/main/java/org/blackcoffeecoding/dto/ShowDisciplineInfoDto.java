@@ -3,7 +3,9 @@ package org.blackcoffeecoding.dto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-public class ShowDisciplineInfoDto {
+import java.io.Serializable;
+
+public class ShowDisciplineInfoDto implements Serializable {
     private Integer code;
     private String name;
     private String department;

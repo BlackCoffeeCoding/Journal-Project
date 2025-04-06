@@ -4,7 +4,9 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-public class ShowProfessorInfoDto {
+import java.io.Serializable;
+
+public class ShowProfessorInfoDto implements Serializable {
     private Integer personnelNumber;
     private String fullName;
     private String birthDate;

@@ -70,9 +70,10 @@
                         <label class="form-label" for="disciplineCode">Дисциплина</label>
                         <select  class="form-control text-center"
                                 id="disciplineCode" name="disciplineCode" th:field="*{disciplineCode}">
+                            <option value="" disabled selected>Выберите дисциплину</option>
                             <option th:each="ad : ${availableDisciplines}"
                                     th:value="${ad.code}"
-                                    th:text="${ad.name}+' '+${ad.department}">Название дисциплины и читающая кафедра
+                                    th:text="${ad.name}+' ('+${ad.department}+')'">Название дисциплины и читающая кафедра
                             </option>
                         </select>
                         <small th:if="${#fields.hasErrors('disciplineCode')}" th:errors="*{disciplineCode}"
@@ -84,9 +85,10 @@
                         <label class="form-label" for="professorPersonnelNumber">Преподаватель</label>
                         <select  class="form-control text-center"
                                  id="professorPersonnelNumber" name="professorPersonnelNumber" th:field="*{professorPersonnelNumber}">
+                            <option value="" disabled selected>Выберите преподавателя</option>
                             <option th:each="pr : ${availableProfessors}"
                                     th:value="${pr.personnelNumber}"
-                                    th:text="${pr.fullName} + ' ' + ${pr.department} + ' ' + ${pr.disciplines}">ФИО профессора, его кафедра и читаемые им дисциплины
+                                    th:text="${pr.fullName} + ' (' + ${pr.department} + ') -' + ${pr.disciplines}">ФИО профессора, его кафедра и читаемые им дисциплины
                             </option>
                         </select>
                         <small th:if="${#fields.hasErrors('professorPersonnelNumber')}" th:errors="*{professorPersonnelNumber}"
@@ -102,5 +104,19 @@
 </main>
 <footer th:replace="fragments/footer"/>
 <script src="/js/bootstrap.bundle.min.js"></script>
+
+<!-- Внешний JS файл для очистки полей выбора на старте -->
+<script src="/js/selector-drop-for-lessons-add.js"></script>
+
+<!-- Для передачи данных во внешний JS файл -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const allDisciplines = /*[[${availableDisciplines}]]*/ [];
+    const allProfessors = /*[[${availableProfessors}]]*/ [];
+    /*]]>*/
+</script>
+
+<!-- Внешний JS файл для фильтрации полей выбора -->
+<script th:inline="javascript" src="/js/discipline-professor-filter-for-lessons-add.js"></script>
 </body>
 </html>

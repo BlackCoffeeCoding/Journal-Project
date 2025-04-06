@@ -1,6 +1,8 @@
 package org.blackcoffeecoding.dto;
 
-public class ShowLessonInfoDto {
+import java.io.Serializable;
+
+public class ShowLessonInfoDto implements Serializable {
     private String id;
     private String date;
     private String time;
